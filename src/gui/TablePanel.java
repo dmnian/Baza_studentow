@@ -27,7 +27,7 @@ public class TablePanel extends JPanel {
 	private JTable table;
 	private StudentTableModel tableModel;
 	private JPopupMenu popup;
-	private PersonTableListener personTableListener;
+	private StudentTableListener studentTableListener;
 
 	// wyszukiwanie
 	private TableRowSorter<TableModel> rowSorter;
@@ -40,6 +40,9 @@ public class TablePanel extends JPanel {
 		popup = new JPopupMenu();
 
 		JMenuItem removeItem = new JMenuItem("Usuń rekord");
+		JMenuItem showPrzedmioty = new JMenuItem("Pokaż przedmioty");
+
+		popup.add(showPrzedmioty);
 		popup.add(removeItem);
 
 		table.addMouseListener(new MouseAdapter() {
@@ -61,12 +64,28 @@ public class TablePanel extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				int row = table.getSelectedRow();
-				int index = (Integer)table.getValueAt(row, 0);
+				int index = (Integer) table.getValueAt(row, 0);
 
-				if (personTableListener != null) {
-					personTableListener.rowDeleted(index);
+				if (studentTableListener != null) {
+					studentTableListener.rowDeleted(index);
 					tableModel.fireTableDataChanged();
 				}
+			}
+		});
+
+		// pokaz przedmioty
+
+		showPrzedmioty.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				int row = table.getSelectedRow();
+				int index = (Integer) table.getValueAt(row, 0);
+				
+				if(studentTableListener != null){
+					studentTableListener.showPrzedmioty(index);
+				}
+
 			}
 		});
 
@@ -88,7 +107,7 @@ public class TablePanel extends JPanel {
 		add(panel, BorderLayout.SOUTH);
 
 		szukaj.addActionListener(new ActionListener() {
-			
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				String text = filtr.getText();
@@ -101,8 +120,8 @@ public class TablePanel extends JPanel {
 		});
 	}
 
-	public void setPersonTableListener(PersonTableListener listener) {
-		this.personTableListener = listener;
+	public void setStudentTableListener(StudentTableListener listener) {
+		this.studentTableListener = listener;
 	}
 
 	public void setData(List<Student> bazaStudentow) {

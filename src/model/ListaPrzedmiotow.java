@@ -1,12 +1,14 @@
 package model;
 
-import java.util.ArrayList;
+import java.util.Collections;
+import java.util.LinkedList;
+import java.util.List;
 
 public class ListaPrzedmiotow {
-	private ArrayList<Przedmiot> przedmioty;
+	private List<Przedmiot> przedmioty;
 	
 	public ListaPrzedmiotow(){
-		przedmioty = new ArrayList<>();
+		przedmioty = new LinkedList<>();
 	}
 	
 	public String toString(){
@@ -42,5 +44,9 @@ public class ListaPrzedmiotow {
 	
 	public int size(){
 		return przedmioty.size();
+	}
+	
+	public List<Przedmiot> getPrzedmioty() {
+		return Collections.unmodifiableList(przedmioty);
 	}
 }

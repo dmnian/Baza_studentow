@@ -1,5 +1,6 @@
 package model;
 
+import java.util.List;
 import java.util.StringTokenizer;
 
 public class Student extends Osoba {
@@ -182,8 +183,8 @@ public class Student extends Osoba {
 		this.rokStudiow = rokStudiow;
 	}
 
-	public ListaPrzedmiotow getPrzedmioty() {
-		return przedmioty;
+	public List<Przedmiot> getPrzedmioty() {
+		return przedmioty.getPrzedmioty();
 	}
 
 	public void setPrzedmioty(ListaPrzedmiotow przedmioty) {

@@ -31,35 +31,37 @@ public class BazaStudentow {
 		}
 		return null;
 	}
+	
+	
 
-	public Student wyszukajStudentaPoNrAlbumu(int NrAlbumu) {
-		for (Student student : studenci) {
-			if (student.getNrAlbumu() == NrAlbumu) {
-				return student;
-			}
-		}
-		return null;
-	}
-
-	public List<Student> wyszukajStudenta(Kierunek kierunek) {
-		List<Student> studentSpelniajacyKryteria = new ArrayList<>();
-		for (Student student : studenci) {
-			if (student.getKierunek() == kierunek) {
-				studentSpelniajacyKryteria.add(student);
-			}
-		}
-		return studentSpelniajacyKryteria;
-	}
-
-	public List<Student> wyszukajStudenta(RokStudiow rokStudiow) {
-		List<Student> studentSpelniajacyKryteria = new ArrayList<>();
-		for (Student student : studenci) {
-			if (student.getRokStudiow() == rokStudiow) {
-				studentSpelniajacyKryteria.add(student);
-			}
-		}
-		return studentSpelniajacyKryteria;
-	}
+//	public Student wyszukajStudentaPoNrAlbumu(int NrAlbumu) {
+//		for (Student student : studenci) {
+//			if (student.getNrAlbumu() == NrAlbumu) {
+//				return student;
+//			}
+//		}
+//		return null;
+//	}
+//
+//	public List<Student> wyszukajStudenta(Kierunek kierunek) {
+//		List<Student> studentSpelniajacyKryteria = new ArrayList<>();
+//		for (Student student : studenci) {
+//			if (student.getKierunek() == kierunek) {
+//				studentSpelniajacyKryteria.add(student);
+//			}
+//		}
+//		return studentSpelniajacyKryteria;
+//	}
+//
+//	public List<Student> wyszukajStudenta(RokStudiow rokStudiow) {
+//		List<Student> studentSpelniajacyKryteria = new ArrayList<>();
+//		for (Student student : studenci) {
+//			if (student.getRokStudiow() == rokStudiow) {
+//				studentSpelniajacyKryteria.add(student);
+//			}
+//		}
+//		return studentSpelniajacyKryteria;
+//	}
 
 	public void zapiszDoPliku(File file) throws FileNotFoundException {
 

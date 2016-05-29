@@ -22,15 +22,15 @@ public class App {
 		bazaStudentow.dodajStudenta(student3);
 		
 
-		List<Student> wynik = bazaStudentow.wyszukajStudenta(Kierunek.informatyka);
+//		List<Student> wynik = bazaStudentow.wyszukajStudenta(Kierunek.informatyka);
 		
-		for (Student student2 : wynik) {
-			System.out.println(student2.getNazwisko());
-		}
-		
-		System.out.println(Kierunek.chemia);
-		
-		student.ustalOcene("Algebra Liniowa", "4");
+//		for (Student student2 : wynik) {
+//			System.out.println(student2.getNazwisko());
+//		}
+//		
+//		System.out.println(Kierunek.chemia);
+//		
+//		student.ustalOcene("Algebra Liniowa", "4");
 //		bazaStudentow.zapiszDoPliku();
 	}
 }

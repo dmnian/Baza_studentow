@@ -5,6 +5,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.io.FileNotFoundException;
+import java.util.List;
 
 import javax.swing.JCheckBoxMenuItem;
 import javax.swing.JFileChooser;
@@ -16,7 +17,7 @@ import javax.swing.JOptionPane;
 import javax.swing.KeyStroke;
 
 import controller.Controller;
-import model.BazaStudentow;
+import model.Przedmiot;
 
 public class MainFrame extends JFrame {
 
@@ -24,6 +25,7 @@ public class MainFrame extends JFrame {
 	private JFileChooser fileChooser;
 	private Controller controller;
 	private TablePanel tablePanel;
+	private PrzedmiotyDialog przedmiotyDialog;
 
 	public MainFrame() {
 		super("Baza Danych Studentów");
@@ -32,18 +34,41 @@ public class MainFrame extends JFrame {
 
 		formPanel = new FormPanel();
 		tablePanel = new TablePanel();
+		przedmiotyDialog = new PrzedmiotyDialog(this);
+		
+		przedmiotyDialog.setPrzedmiotListener(new PrzedmiotListener() {
+			
+			@Override
+			public void przedmiotEventOccured(int index, String nazwa, String ocena) {
+				controller.addPrzedmiot(index, nazwa, ocena);
+				przedmiotyDialog.refresh();
+			}
+		});
 		
 		controller = new Controller();
 		
 		tablePanel.setData(controller.getStudenci());
 		
-		tablePanel.setPersonTableListener(new PersonTableListener() {
+		
+		tablePanel.setStudentTableListener(new StudentTableListener() {
 			
 			@Override
 			public void rowDeleted(int row) {
 				controller.removeStudent(row);
 				System.out.println(row);
 			}
+
+			@Override
+			public void showPrzedmioty(int index) {
+				List<Przedmiot> listaPrzedmiotow = controller.getStudenci().get(index).getPrzedmioty(); 
+				przedmiotyDialog.setListaPrzedmiotow(listaPrzedmiotow);
+				przedmiotyDialog.setIdStudenta(index);
+//				controller ?
+				przedmiotyDialog.refresh();
+				przedmiotyDialog.setVisible(true);
+			}
+			
+			
 		});
 		
 		fileChooser = new JFileChooser();

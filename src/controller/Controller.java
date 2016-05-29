@@ -7,6 +7,7 @@ import java.util.List;
 import gui.FormEvent;
 import model.BazaStudentow;
 import model.Kierunek;
+import model.Przedmiot;
 import model.RokStudiow;
 import model.Student;
 
@@ -43,6 +44,12 @@ public class Controller {
 		bazaStudentow.dodajStudenta(student);
 	}
 	
+	public void addPrzedmiot(int index, String nazwa, String ocena){
+		Przedmiot przedmiot = new Przedmiot(nazwa, ocena);
+		Student student = this.getStudenci().get(index);
+		student.dodajPrzedmiot(przedmiot);
+	}
+	
 	public void zapiszDoPliku(File file) throws FileNotFoundException{
 		bazaStudentow.zapiszDoPliku(file);
 	}
@@ -54,7 +61,6 @@ public class Controller {
 	public void removeStudent(int index){
 		bazaStudentow.usunStudenta(index);
 	}
-	
 	
 
 }

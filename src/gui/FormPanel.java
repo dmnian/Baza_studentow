@@ -35,7 +35,6 @@ public class FormPanel extends JPanel {
 	private FormListener listener;
 	private JList kierunekList;
 	private JComboBox rokCombo;
-	// private JCheckBox citizxxxxxxxAlbum;
 	private JTextField nrAlbumuField;
 	private JLabel nrAlbumuLabel;
 
@@ -91,13 +90,12 @@ public class FormPanel extends JPanel {
 		okBtn.addActionListener(new ActionListener() {
 
 			@Override
-			public void actionPerformed(ActionEvent e) { //////////////// Walidowac
-															//////////////// polaaaaaaaaaaaaaaaaaaaaaaaaaaa!!!!!!!
+			public void actionPerformed(ActionEvent e) {
+
 				String imie = imieField.getText();
 				String nazwisko = nazwiskoField.getText();
 				KierunekCategory kierunekCat = (KierunekCategory) kierunekList.getSelectedValue();
 				RokStudiow rokCat = (RokStudiow) rokCombo.getSelectedItem();
-				// String rokCat = (String) rokCombo.getSelectedItem();
 
 				int nrAlbumu;
 				try {
