@@ -43,6 +43,13 @@ public class MainFrame extends JFrame {
 				controller.addPrzedmiot(index, nazwa, ocena);
 				przedmiotyDialog.refresh();
 			}
+
+			@Override
+			public void przedmiotRemove(int idStudenta, int przedmiot) {
+				controller.removePrzedmiot(idStudenta, przedmiot);
+			}
+			
+			
 		});
 		
 		controller = new Controller();

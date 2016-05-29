@@ -104,6 +104,10 @@ public class Student extends Osoba {
 	public void dodajPrzedmiotDoListy(String nazwa) {
 		przedmioty.dodajPrzedmiot(nazwa);
 	}
+	
+	public void removePrzedmiot(int index){
+		przedmioty.removePrzedmiot(index);
+	}
 
 	public void ustalOcene(String nazwa, String ocena) {
 		przedmioty.ustalOcene(nazwa, ocena);

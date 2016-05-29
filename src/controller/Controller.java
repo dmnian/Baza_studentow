@@ -50,6 +50,11 @@ public class Controller {
 		student.dodajPrzedmiot(przedmiot);
 	}
 	
+	public void removePrzedmiot(int idStudenta, int przedmiot){
+		Student student = this.getStudenci().get(idStudenta);
+		student.removePrzedmiot(przedmiot);
+	}
+
 	public void zapiszDoPliku(File file) throws FileNotFoundException{
 		bazaStudentow.zapiszDoPliku(file);
 	}
@@ -61,6 +66,7 @@ public class Controller {
 	public void removeStudent(int index){
 		bazaStudentow.usunStudenta(index);
 	}
+	
 	
 
 }

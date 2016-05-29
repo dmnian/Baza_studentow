@@ -34,6 +34,10 @@ public class ListaPrzedmiotow {
 		przedmioty.add(przedmiot);
 	}
 	
+	public void removePrzedmiot(int index){
+		przedmioty.remove(index);
+	}
+	
 	public void ustalOcene(String nazwa, String ocena){
 		for (Przedmiot przedmiot : przedmioty) {
 			if(przedmiot.isPrzedmiot(nazwa)){

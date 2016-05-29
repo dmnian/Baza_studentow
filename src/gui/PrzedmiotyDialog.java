@@ -30,6 +30,8 @@ public class PrzedmiotyDialog extends JDialog {
 		super(parent, "Przedmioty", false);
 		
 		przedmiotyTablePanel = new PrzedmiotyTablePanel();
+		przedmiotyTablePanel.setZewKlasa(this);
+		
 		dodajPrzedmiotPanel = new JPanel();
 		
 		dodajPrzedmiotButton = new JButton("dodaj przedmiot");
@@ -63,6 +65,7 @@ public class PrzedmiotyDialog extends JDialog {
 		});
 		
 		
+		
 		add(przedmiotyTablePanel, BorderLayout.CENTER);
 		add(dodajPrzedmiotPanel, BorderLayout.SOUTH);
 	}
@@ -81,6 +84,10 @@ public class PrzedmiotyDialog extends JDialog {
 	
 	public void setPrzedmiotListener(PrzedmiotListener przedmiotListener){
 		this.przedmiotListener = przedmiotListener;
+	}
+	
+	public void przedmiotRemove(int przedmiot){
+		this.przedmiotListener.przedmiotRemove(idStudenta, przedmiot);
 	}
 	
 	public void refresh(){
