@@ -6,5 +6,6 @@ public enum Ocena {
 	DBplus, 
 	DST,
 	DSTplus, 
-	NDST
+	NDST,
+	
 }

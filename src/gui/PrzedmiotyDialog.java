@@ -1,6 +1,7 @@
 package gui;
 
 import java.awt.BorderLayout;
+import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -27,6 +28,7 @@ public class PrzedmiotyDialog extends JDialog {
 
 	public PrzedmiotyDialog(JFrame parent){
 		super(parent, "Przedmioty", false);
+		
 		przedmiotyTablePanel = new PrzedmiotyTablePanel();
 		dodajPrzedmiotPanel = new JPanel();
 		
@@ -43,6 +45,7 @@ public class PrzedmiotyDialog extends JDialog {
 		
 		
 		setSize(600, 400);
+		setMinimumSize(new Dimension(600, 400));
 		
 		setLayout(new BorderLayout());
 		

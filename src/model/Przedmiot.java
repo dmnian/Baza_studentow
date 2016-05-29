@@ -66,7 +66,21 @@ public class Przedmiot {
 			return Ocena.DBplus;
 		case "5":
 			return Ocena.BDB;
+		case "NDST":
+			return Ocena.NDST;
+		case "DST":
+			return Ocena.DST;
+		case "DSTplus":
+			return Ocena.DSTplus;
+		case "DB":
+			return Ocena.DB;
+		case "DBplus":
+			return Ocena.DBplus;
+		case "BDB":
+			return Ocena.BDB;
+			default:
+				return null;
 		}
-		return null;
+//		return null;
 	}
 }
