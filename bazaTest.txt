@@ -1,0 +1,2 @@
+0;informatyka;1;I;2;Algebra Liniowa;DB;Algebra Liniowa2;null;
+1;informatyka;11;I;0;
