@@ -6,6 +6,11 @@ import javax.swing.table.AbstractTableModel;
 
 import model.Student;
 
+
+/**
+ * Klasa - model w oparciu o który funkcjonuje tabela ze studentami.
+ *
+ */
 public class StudentTableModel extends AbstractTableModel {
 	private List<Student> bazaStudentow;
 

@@ -3,6 +3,11 @@ package model;
 import java.util.List;
 import java.util.StringTokenizer;
 
+/**
+ * Klasa określająca studenta, dziedzicząca po klasie Osoba. 
+ *
+ */
+
 public class Student extends Osoba {
 	private static int licznik = 0;
 	private int id;

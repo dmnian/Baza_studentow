@@ -11,6 +11,9 @@ import model.Przedmiot;
 import model.RokStudiow;
 import model.Student;
 
+/**
+ * Klasa odpowiedzialna za przyjmowanie danych wejściowych, odświeżanie widoków oraz aktualizacje modelu. 
+ */
 public class Controller {
 	BazaStudentow bazaStudentow = new BazaStudentow();
 
@@ -18,13 +21,14 @@ public class Controller {
 		return bazaStudentow.getStudenci();
 	}
 
-	public void addStudent(FormEvent ev) {
+	
+	public void addStudent(FormEvent ev) { 
 		String imie = ev.getImie();
 		String nazwisko = ev.getNazwisko();
 		int kierunekId = ev.getKierunekId();
 		Kierunek kierunek = null;
-		
-		switch(kierunekId){
+
+		switch (kierunekId) {
 		case 0:
 			kierunek = Kierunek.chemia;
 			break;
@@ -35,38 +39,34 @@ public class Controller {
 			kierunek = Kierunek.matematyka;
 			break;
 		}
-		
 		int nrAlbumu = ev.getNrAlbumu();
 		RokStudiow rokStudiow = ev.getRokStudiow();
-
 
 		Student student = new Student(imie, nazwisko, kierunek, nrAlbumu, rokStudiow);
 		bazaStudentow.dodajStudenta(student);
 	}
-	
-	public void addPrzedmiot(int index, String nazwa, String ocena){
+
+	public void addPrzedmiot(int index, String nazwa, String ocena) {
 		Przedmiot przedmiot = new Przedmiot(nazwa, ocena);
 		Student student = this.getStudenci().get(index);
 		student.dodajPrzedmiot(przedmiot);
 	}
-	
-	public void removePrzedmiot(int idStudenta, int przedmiot){
+
+	public void removePrzedmiot(int idStudenta, int przedmiot) {
 		Student student = this.getStudenci().get(idStudenta);
 		student.removePrzedmiot(przedmiot);
 	}
 
-	public void zapiszDoPliku(File file) throws FileNotFoundException{
+	public void zapiszDoPliku(File file) throws FileNotFoundException {
 		bazaStudentow.zapiszDoPliku(file);
 	}
-	
-	public void wczytajPlik(File file) throws FileNotFoundException{
+
+	public void wczytajPlik(File file) throws FileNotFoundException {
 		bazaStudentow.wczytajPlik(file);
 	}
-	
-	public void removeStudent(int index){
+
+	public void removeStudent(int index) {
 		bazaStudentow.usunStudenta(index);
 	}
-	
-	
 
 }

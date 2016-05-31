@@ -23,6 +23,11 @@ import javax.swing.table.TableRowSorter;
 
 import model.Student;
 
+
+/**
+ * Klasa - panel ktora zawiera tabele ze studentami.
+ *
+ */
 public class TablePanel extends JPanel {
 	private JTable table;
 	private StudentTableModel tableModel;

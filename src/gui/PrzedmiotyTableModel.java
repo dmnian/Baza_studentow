@@ -7,6 +7,11 @@ import javax.swing.table.AbstractTableModel;
 import model.ListaPrzedmiotow;
 import model.Przedmiot;
 
+
+/**
+ * Klasa - model w oparciu o który funkcjonuje tabela z przedmiotami wybranego studenta.
+ *
+ */
 public class PrzedmiotyTableModel extends AbstractTableModel {
 	private List<Przedmiot> listaPrzedmiotow;
 	private String[] colNames = { "nazwa", "ocena" };

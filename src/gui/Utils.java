@@ -1,5 +1,10 @@
 package gui;
 
+
+/**
+ * Klasa narzędziowa stworzona dla pozyskiwania rozszerzenia z nazwy pliku.
+ *
+ */
 public class Utils {
 	public static String getFileExtension(String name){
 		

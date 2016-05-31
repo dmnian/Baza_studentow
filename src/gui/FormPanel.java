@@ -25,6 +25,11 @@ import javax.swing.border.Border;
 
 import model.RokStudiow;
 
+/**
+ * Klasa zawierająca formularz oraz jego składowe czyli pola tekstowe, etykiety
+ * itp. a także przycisk reagujący na kliknięcie ze strony użytkownika.
+ *
+ */
 public class FormPanel extends JPanel {
 
 	private JLabel imieLabel;

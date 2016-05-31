@@ -16,6 +16,7 @@ import javax.swing.JTable;
 
 import model.Przedmiot;
 
+/** Klasa odpowiedzialna za przechowywanie wyświetlanie tabeli z przedmiotami */
 public class PrzedmiotyTablePanel extends JPanel {
 	private JTable tablePrzedmioty;
 	private PrzedmiotyTableModel przedmiotyTableModel;

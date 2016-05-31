@@ -1,5 +1,10 @@
 package gui;
 
+
+/**
+ * Interfejs nasłuchujący zmian w tabeli studentów. 
+ *
+ */
 public interface StudentTableListener {
 	public void rowDeleted(int row);
 

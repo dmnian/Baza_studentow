@@ -16,6 +16,10 @@ import javax.swing.JTextField;
 
 import model.Przedmiot;
 
+/**
+ * Klasa - okno wyświetlające przedmioty danego studenta, wraz z możliwością ich
+ * modyfikacji, usuwania oraz dodawania nowych.
+ */
 public class PrzedmiotyDialog extends JDialog {
 
 	private PrzedmiotyTablePanel przedmiotyTablePanel;
@@ -26,46 +30,43 @@ public class PrzedmiotyDialog extends JDialog {
 	private int idStudenta;
 	private PrzedmiotListener przedmiotListener;
 
-	public PrzedmiotyDialog(JFrame parent){
+	public PrzedmiotyDialog(JFrame parent) {
 		super(parent, "Przedmioty", false);
-		
+
 		przedmiotyTablePanel = new PrzedmiotyTablePanel();
 		przedmiotyTablePanel.setZewKlasa(this);
-		
+
 		dodajPrzedmiotPanel = new JPanel();
-		
+
 		dodajPrzedmiotButton = new JButton("dodaj przedmiot");
 		nazwaPrzedmiot = new JTextField(10);
 		ocenaPrzedmiot = new JTextField(10);
-		
+
 		dodajPrzedmiotPanel.setLayout(new FlowLayout());
 		dodajPrzedmiotPanel.add(new JLabel("nazwa: "));
 		dodajPrzedmiotPanel.add(nazwaPrzedmiot);
 		dodajPrzedmiotPanel.add(new JLabel("ocena: "));
 		dodajPrzedmiotPanel.add(ocenaPrzedmiot);
 		dodajPrzedmiotPanel.add(dodajPrzedmiotButton);
-		
-		
+
 		setSize(600, 400);
 		setMinimumSize(new Dimension(600, 400));
-		
+
 		setLayout(new BorderLayout());
-		
+
 		dodajPrzedmiotButton.addActionListener(new ActionListener() {
-			
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				String nazwa = nazwaPrzedmiot.getText();
 				String ocena = ocenaPrzedmiot.getText();
-				
-				if(przedmiotListener != null){
+
+				if (przedmiotListener != null) {
 					przedmiotListener.przedmiotEventOccured(idStudenta, nazwa, ocena);
 				}
 			}
 		});
-		
-		
-		
+
 		add(przedmiotyTablePanel, BorderLayout.CENTER);
 		add(dodajPrzedmiotPanel, BorderLayout.SOUTH);
 	}
@@ -73,24 +74,24 @@ public class PrzedmiotyDialog extends JDialog {
 	public void setListaPrzedmiotow(List<Przedmiot> listaPrzedmiotow) {
 		przedmiotyTablePanel.setListaPrzedmiotow(listaPrzedmiotow);
 	}
-	
-	public void setIdStudenta(int idStudenta){
+
+	public void setIdStudenta(int idStudenta) {
 		this.idStudenta = idStudenta;
 	}
-	
-	public int getIdStudenta(){
+
+	public int getIdStudenta() {
 		return idStudenta;
 	}
-	
-	public void setPrzedmiotListener(PrzedmiotListener przedmiotListener){
+
+	public void setPrzedmiotListener(PrzedmiotListener przedmiotListener) {
 		this.przedmiotListener = przedmiotListener;
 	}
-	
-	public void przedmiotRemove(int przedmiot){
+
+	public void przedmiotRemove(int przedmiot) {
 		this.przedmiotListener.przedmiotRemove(idStudenta, przedmiot);
 	}
-	
-	public void refresh(){
+
+	public void refresh() {
 		przedmiotyTablePanel.refresh();
 	}
 }

@@ -1,5 +1,8 @@
 package model;
 
+/**
+ * Klasa abstrakcyjna - nadrzędna względem klasy student.
+ */
 public abstract class Osoba {
 	private String imie, nazwisko;
 

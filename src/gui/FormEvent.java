@@ -5,6 +5,11 @@ import model.Kierunek;
 import model.ListaPrzedmiotow;
 import model.RokStudiow;
 
+
+/**
+ * Klasa przenosząca dane z formularza.
+ *
+ */
 public class FormEvent extends EventObject {
 
 	private String imie;

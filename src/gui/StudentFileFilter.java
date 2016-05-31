@@ -1,8 +1,14 @@
 package gui;
 import java.io.File;
 
+
+
 import javax.swing.filechooser.FileFilter;
 
+/**
+ * Klasa odpowiedzialna za filtrowanie plików, tak aby użytkownik mógł wybrać jedynie te o właściwym rozszerzeniu.
+ *
+ */
 public class StudentFileFilter extends FileFilter {
 
 	@Override

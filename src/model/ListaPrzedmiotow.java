@@ -4,6 +4,11 @@ import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 
+
+/**
+ * Klasa zawierająca liste przedmiotów.
+ *
+ */
 public class ListaPrzedmiotow {
 	private List<Przedmiot> przedmioty;
 	

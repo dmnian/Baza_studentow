@@ -1,9 +1,13 @@
 package gui;
+
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
 import java.io.FileNotFoundException;
 import java.util.List;
 
@@ -19,6 +23,11 @@ import javax.swing.KeyStroke;
 import controller.Controller;
 import model.Przedmiot;
 
+/**
+ * Klasa - główne okno interfejsu graficznego aplikacji. Zawiera panel z
+ * formularzem oraz dotyczący tabelki.
+ *
+ */
 public class MainFrame extends JFrame {
 
 	private FormPanel formPanel;
@@ -35,9 +44,9 @@ public class MainFrame extends JFrame {
 		formPanel = new FormPanel();
 		tablePanel = new TablePanel();
 		przedmiotyDialog = new PrzedmiotyDialog(this);
-		
+
 		przedmiotyDialog.setPrzedmiotListener(new PrzedmiotListener() {
-			
+
 			@Override
 			public void przedmiotEventOccured(int index, String nazwa, String ocena) {
 				controller.addPrzedmiot(index, nazwa, ocena);
@@ -48,17 +57,15 @@ public class MainFrame extends JFrame {
 			public void przedmiotRemove(int idStudenta, int przedmiot) {
 				controller.removePrzedmiot(idStudenta, przedmiot);
 			}
-			
-			
+
 		});
-		
+
 		controller = new Controller();
-		
+
 		tablePanel.setData(controller.getStudenci());
-		
-		
+
 		tablePanel.setStudentTableListener(new StudentTableListener() {
-			
+
 			@Override
 			public void rowDeleted(int row) {
 				controller.removeStudent(row);
@@ -67,17 +74,16 @@ public class MainFrame extends JFrame {
 
 			@Override
 			public void showPrzedmioty(int index) {
-				List<Przedmiot> listaPrzedmiotow = controller.getStudenci().get(index).getPrzedmioty(); 
+				List<Przedmiot> listaPrzedmiotow = controller.getStudenci().get(index).getPrzedmioty();
 				przedmiotyDialog.setListaPrzedmiotow(listaPrzedmiotow);
 				przedmiotyDialog.setIdStudenta(index);
-//				controller ?
+				// controller ?
 				przedmiotyDialog.refresh();
 				przedmiotyDialog.setVisible(true);
 			}
-			
-			
+
 		});
-		
+
 		fileChooser = new JFileChooser();
 		fileChooser.addChoosableFileFilter(new StudentFileFilter());
 
@@ -96,7 +102,20 @@ public class MainFrame extends JFrame {
 		add(formPanel, BorderLayout.WEST);
 		add(tablePanel, BorderLayout.CENTER);
 
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+		
+		this.addWindowListener(new WindowAdapter() {
+
+			public void windowClosing(WindowEvent e) {
+				int action = JOptionPane.showConfirmDialog(MainFrame.this, "Czy napewno chcesz wyjść z aplikacji?",
+						"Potwierdź wyjście", JOptionPane.OK_CANCEL_OPTION);
+				if (action == JOptionPane.OK_OPTION) {
+					System.exit(0);
+				}
+			}
+
+		});
+
 		setMinimumSize(new Dimension(900, 500));
 		setSize(600, 500);
 		setVisible(true);
@@ -106,8 +125,8 @@ public class MainFrame extends JFrame {
 		JMenuBar menuBar = new JMenuBar();
 
 		JMenu fileMenu = new JMenu("Plik");
-		JMenuItem exportDataItem = new JMenuItem("Export Data...");
-		JMenuItem importDataItem = new JMenuItem("Import Data...");
+		JMenuItem exportDataItem = new JMenuItem("Export...");
+		JMenuItem importDataItem = new JMenuItem("Import...");
 		JMenuItem exitItem = new JMenuItem("Wyjdź");
 
 		fileMenu.add(exportDataItem);
@@ -140,44 +159,46 @@ public class MainFrame extends JFrame {
 		exitItem.setMnemonic(KeyEvent.VK_X);
 
 		exitItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_X, ActionEvent.CTRL_MASK));
-		
+
 		importDataItem.addActionListener(new ActionListener() {
-			
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				if(fileChooser.showOpenDialog(MainFrame.this) == JFileChooser.APPROVE_OPTION) {
+				if (fileChooser.showOpenDialog(MainFrame.this) == JFileChooser.APPROVE_OPTION) {
 					try {
 						controller.wczytajPlik(fileChooser.getSelectedFile());
 						tablePanel.refresh();
 					} catch (FileNotFoundException e1) {
-						JOptionPane.showMessageDialog(MainFrame.this, "Błąd, nie udało sie wczytać pliku.", "Błąd!", JOptionPane.ERROR_MESSAGE);
+						JOptionPane.showMessageDialog(MainFrame.this, "Błąd, nie udało sie wczytać pliku.", "Błąd!",
+								JOptionPane.ERROR_MESSAGE);
 					}
-					
+
 				}
 			}
 		});
 
 		exportDataItem.addActionListener(new ActionListener() {
-			
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				if(fileChooser.showSaveDialog(MainFrame.this) == JFileChooser.APPROVE_OPTION) {
+				if (fileChooser.showSaveDialog(MainFrame.this) == JFileChooser.APPROVE_OPTION) {
 					try {
 						controller.zapiszDoPliku(fileChooser.getSelectedFile());
 					} catch (FileNotFoundException e1) {
-						JOptionPane.showMessageDialog(MainFrame.this, "Błąd, nie udało sie zaisac pliku.", "Błąd!", JOptionPane.ERROR_MESSAGE);
+						JOptionPane.showMessageDialog(MainFrame.this, "Błąd, nie udało sie zaisac pliku.", "Błąd!",
+								JOptionPane.ERROR_MESSAGE);
 					}
-//					System.out.println(fileChooser.getSelectedFile());
+					// System.out.println(fileChooser.getSelectedFile());
 				}
 			}
 		});
-		
+
 		exitItem.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				int action = JOptionPane.showConfirmDialog(MainFrame.this,
-						"Czy napewno chcesz wyjść z aplikacji?", "Potwierdź wyjście", JOptionPane.OK_CANCEL_OPTION);
+				int action = JOptionPane.showConfirmDialog(MainFrame.this, "Czy napewno chcesz wyjść z aplikacji?",
+						"Potwierdź wyjście", JOptionPane.OK_CANCEL_OPTION);
 				if (action == JOptionPane.OK_OPTION) {
 					System.exit(0);
 				}

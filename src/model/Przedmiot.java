@@ -1,5 +1,9 @@
 package model;
 
+/**
+ * Klasa określająca przedmiot na studiach. Zawiera pole dotyczące nazwy oraz oceny.
+ *
+ */
 public class Przedmiot {
 	private String nazwa;
 	private Ocena ocena;
