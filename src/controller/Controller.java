@@ -4,6 +4,8 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.List;
 
+import javax.swing.JOptionPane;
+
 import gui.FormEvent;
 import model.BazaStudentow;
 import model.Kierunek;
@@ -40,10 +42,19 @@ public class Controller {
 			break;
 		}
 		int nrAlbumu = ev.getNrAlbumu();
-		RokStudiow rokStudiow = ev.getRokStudiow();
+		
+		try {
+			if(bazaStudentow.sprawdzCzyIstnieje(nrAlbumu)){
+				throw new Exception("Student o określonym numerze Albumu już istnieje w bazie!");
+			}
+			
+			RokStudiow rokStudiow = ev.getRokStudiow();
 
-		Student student = new Student(imie, nazwisko, kierunek, nrAlbumu, rokStudiow);
-		bazaStudentow.dodajStudenta(student);
+			Student student = new Student(imie, nazwisko, kierunek, nrAlbumu, rokStudiow);
+			bazaStudentow.dodajStudenta(student);
+		} catch (Exception e) {
+			JOptionPane.showMessageDialog(null, e.getMessage());
+		}
 	}
 
 	public void addPrzedmiot(int index, String nazwa, String ocena) {

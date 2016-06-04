@@ -19,6 +19,10 @@ public class BazaStudentow {
 	public BazaStudentow() {
 		studenci = new LinkedList<>();
 	}
+	
+	public boolean sprawdzCzyIstnieje(int nrAlbumu){
+		return studenci.stream().anyMatch(s -> s.getNrAlbumu() == nrAlbumu);
+	}
 
 	public void dodajStudenta(Student student) {
 		studenci.add(student);
